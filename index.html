@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>病患資料顯示</title>
+    <script src="https://cdn.jsdelivr.net/npm/fhirclient/build/fhir-client.js"></script>
+</head>
+<body>
+    <h3>當前病患基本資訊 (Patient Info)</h3>
+    <pre id="patient">讀取中，請稍候...</pre>
+
+    <script>
+        // 當頁面準備好並取得 Token 後執行 [cite: 819]
+        FHIR.oauth2.ready().then(function(client) {
+            // 讀取當前病患資料 [cite: 821]
+            client.patient.read().then(function(pt) {
+                // 將 JSON 格式轉換為好讀的文字並顯示 [cite: 825]
+                document.getElementById("patient").innerText = JSON.stringify(pt, null, 4);
+            });
+        }).catch(console.error); // 若發生錯誤則在後台紀錄 [cite: 855]
+    </script>
+</body>
+</html>
