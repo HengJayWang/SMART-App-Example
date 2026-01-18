@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>啟動 SMART App</title>
+    <script src="https://cdn.jsdelivr.net/npm/fhirclient/build/fhir-client.js"></script>
+</head>
+<body>
+    <script>
+        // 啟動授權流程 [cite: 776]
+        FHIR.oauth2.authorize({
+            "clientId": "my_web_app", // 您的 App 識別碼 [cite: 778]
+            "scope": "launch openid fhirUser patient/*.read", // 請求權限範圍 [cite: 780]
+            "redirectUri": "index.html" // 授權成功後跳轉回哪一頁 [cite: 782]
+        });
+    </script>
+    <p>正在與醫療系統進行身分驗證，請稍候...</p>
+</body>
+</html>
